@@ -1,0 +1,92 @@
+/* Basic Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #F5F5F5;
+    color: #333333;
+  }
+  
+  /* Header/Footer */
+  header, footer {
+    background-color: #007BFF;
+    color: white;
+    text-align: center;
+    padding: 1em 0;
+  }
+  
+  /* Main Content Styles */
+  main {
+    padding: 20px;
+  }
+  
+  /* Form Styles */
+  form {
+    margin-bottom: 20px;
+  }
+  
+  input[type="text"], input[type="date"], select {
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #CCCCCC;
+    border-radius: 4px;
+    width: calc(100% - 22px);
+  }
+  
+  button, input[type="submit"] {
+    background-color: #FFC107;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  
+  button:hover, input[type="submit"]:hover {
+    background-color: #E0A800;
+  }
+  
+  /* Table Styles */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  th, td {
+    text-align: left;
+    padding: 8px;
+    border-bottom: 1px solid #DDD;
+  }
+  
+  th {
+    background-color: #007BFF;
+    color: white;
+  }
+  
+  tr:nth-child(even) {
+    background-color: #FAFAFA;
+  }
+  
+  /* Status Indicators */
+  .status-completed {
+    color: #28A745;
+  }
+  
+  .status-high-priority {
+    color: #DC3545;
+  }
+  
+  .status-in-progress {
+    color: #17A2B8;
+  }
+  
+  /* Utility Classes */
+  .text-center {
+    text-align: center;
+  }
+  
