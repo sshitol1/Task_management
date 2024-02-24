@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Task Manager</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link rel="stylesheet" href="/static/styles.css">
 </head>
 <body>
     <h1>Task Manager</h1>
@@ -19,7 +19,7 @@
             <input type="submit" value="Add Task">
         </form>
     </div>
-    <div class="task-table">
+    <div class="task-table" style="margin-top: 20px;">
         <table>
             <tr>
                 <th>Task</th>
