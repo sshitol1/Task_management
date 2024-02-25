@@ -1,0 +1,48 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+.header {
+    background-color: #333;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+}
+.task-form {
+    background-color: #fff;
+    padding: 20px;
+    margin: 20px;
+    border-radius: 8px;
+}
+.task-table {
+    width: 100%;
+    margin-top: 20px;
+    border-collapse: collapse;
+}
+.task-table, .task-table th, .task-table td {
+    border: 1px solid #ddd;
+}
+.task-table th, .task-table td {
+    padding: 10px;
+    text-align: left;
+}
+.task-table th {
+    background-color: #333;
+    color: white;
+}
+.task-table tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+.btn {
+    padding: 10px;
+    background-color: green;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.btn:hover {
+    background-color: darkgreen;
+}

@@ -2,44 +2,105 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Task Manager</title>
-    <link rel="stylesheet" href="/static/styles.css">
+    <link rel="stylesheet" href="styles.css">
+    <script>
+        var tasks = []; // This will hold our tasks
+
+        window.onload = function() {
+        // Set the date_assigned input to today's date by default
+        var today = new Date().toISOString().split('T')[0];
+        document.getElementById('date_assigned').value = today;
+        };
+
+        function addTask() {
+            var taskInput = document.getElementById('task');
+            var assignedToInput = document.getElementById('assigned_to');
+            var priorityInput = document.getElementById('priority');
+            var dateAssignedInput = document.getElementById('date_assigned');
+
+            var task = {
+                task: taskInput.value,
+                assigned_to: assignedToInput.value,
+                priority: priorityInput.value,
+                date_assigned: dateAssignedInput.value || new Date().toISOString().split('T')[0], // Use the input value or today's date if not set
+                status: 'Pending',
+                date_completed: null
+            };
+
+            tasks.push(task);
+
+            updateTaskList();
+            document.getElementById('task-form').reset();
+            document.getElementById('date_assigned').value = new Date().toISOString().split('T')[0]; // Reset the date to today after adding a task
+
+            return false;
+        }
+
+
+        function updateTaskList() {
+            var taskList = document.getElementById('task-list');
+            taskList.innerHTML = ''; // Clear the task list
+
+            if (tasks.length === 0) {
+                taskList.innerHTML = '<tr><td colspan="6">No tasks found</td></tr>';
+                return;
+            }
+
+            tasks.forEach(function(task, index) {
+                var row = '<tr>' +
+                    '<td>' + task.task + '</td>' +
+                    '<td>' + task.assigned_to + '</td>' +
+                    '<td>' + task.priority + '</td>' +
+                    '<td>' + task.status + '</td>' +
+                    '<td>' + task.date_assigned + '</td>' +
+                    '<td>' + (task.date_completed ? task.date_completed : 'N/A') + '</td>' +
+                    '</tr>';
+                taskList.innerHTML += row; // Add the row to the task list
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', updateTaskList); // Update the task list on page load
+    </script>
 </head>
 <body>
+
+<div class="header">
     <h1>Task Manager</h1>
-    <div class="add-task-form">
-        <form action="/add" method="post">
-            Task: <input type="text" name="task" required>
-            Assigned To: <input type="text" name="assigned_to" required>
-            Priority: <select name="priority">
-                <option value="High">High</option>
-                <option value="Medium" selected>Medium</option>
-                <option value="Low">Low</option>
-            </select>
-            <input type="submit" value="Add Task">
-        </form>
-    </div>
-    <div class="task-table" style="margin-top: 20px;">
-        <table>
-            <tr>
-                <th>Task</th>
-                <th>Assigned To</th>
-                <th>Priority</th>
-                <th>Status</th>
-                <th>Date Assigned</th>
-                <th>Date Completed</th>
-            </tr>
-            {% for task in tasks %}
-            <tr>
-                <td>{{ task[1] }}</td>
-                <td>{{ task[2] }}</td>
-                <td>{{ task[3] }}</td>
-                <td>{{ task[4] }}</td>
-                <td>{{ task[5] }}</td>
-                <td>{{ task[6] }}</td>
-            </tr>
-            {% endfor %}
-        </table>
-    </div>
+</div>
+
+<div class="task-form">
+    <form id="task-form" onsubmit="return addTask()">
+        Task: <input type="text" id="task" required>
+        Assigned To: <input type="text" id="assigned_to" required>
+        Priority: 
+        <select id="priority" required>
+            <option value="High">High</option>
+            <option value="Medium" selected>Medium</option>
+            <option value="Low">Low</option>
+        </select>
+        Date Assigned: <input type="date" id="date_assigned" name="date_assigned">
+        <input type="submit" value="Add Task" class="btn">
+    </form>
+</div>
+
+<table class="task-table">
+    <thead>
+        <tr>
+            <th>Task</th>
+            <th>Assigned To</th>
+            <th>Priority</th>
+            <th>Status</th>
+            <th>Date Assigned</th>
+            <th>Date Completed</th>
+        </tr>
+    </thead>
+    <tbody id="task-list">
+        <!-- Task rows will be added here by JavaScript -->
+    </tbody>
+</table>
+
 </body>
 </html>
+
